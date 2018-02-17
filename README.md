@@ -1,8 +1,8 @@
-======
 demono
 ======
 
 Simple and small Unix daemon library.
+
 License: MIT.
 
 
@@ -25,7 +25,7 @@ Requirements
 
 * Python 3
 
-Note: Click 6.x required for running sample daemons only
+Note: Click 6.x required for running sample daemons only.
 
 Limitations
 ===========
@@ -36,5 +36,5 @@ Getting Help
 ============
     
 * Email me: <mezozoysky@gmail.com>
-* Post `issues to GitHub <http://github.com/Mezozoysky/demono/issues>`.
+* Post `issues to GitHub <http://github.com/Mezozoysky/demono/issues>`
 
