@@ -32,7 +32,8 @@ class DumbDaemon(Demono):
 @click.group()
 @click.pass_context
 def ctl_cli(ctx):
-    daemon = DumbDaemon(err='/home/mezozoy/tmp/CyberDaemon.stderr')
+    daemon = DumbDaemon(err='/var/log/sample_daemon_dumb.err'
+                        , out='/var/log/sample_daemon_dumb.out')
     ctx.obj['daemon'] = daemon
 
 
