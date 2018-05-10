@@ -13,7 +13,7 @@ with open(os.path.join(top_dir, package_name, '__version__.py')) as f:
     exec(f.read(), tmp)
     package_version = tmp['__version__']
     del tmp
-package_requires = open("requires.list").read().split('\n')
+package_requires = open("requirements.txt").read().split('\n')
 readme_content = open("README.md").read()
 
 setup(
