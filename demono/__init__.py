@@ -86,7 +86,7 @@ class Demono:
             self._err = kwargs['err']
 
 
-    def run(self):
+    def run(self, **kwargs):
         assert False, \
             'You should subclass "Demono" class end override it\'s' \
             '"run" method, like this:\n' \
@@ -100,7 +100,7 @@ class Demono:
             '# your other code here\n' \
             '>> -----  Example end  -----\n'
 
-    def start(self):
+    def start(self, **kwargs):
         """
         Daemonize process and 'run' the daemon
         """
@@ -109,7 +109,7 @@ class Demono:
                 'Considered daemon is running already'.format(self._pid_file))
 
         self._daemonize()
-        self.run()
+        self.run(**kwargs)
 
     def stop(self):
         """

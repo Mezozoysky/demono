@@ -96,3 +96,5 @@ Pipfile.lock
 
 # Custom
 .projectile
+*.log
+*.pid

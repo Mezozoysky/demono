@@ -8,15 +8,18 @@ Usage: 'python3 sample_daemon_dumb.py <start|stop>'.
 """
 
 import sys
+import os
 import time
 import signal
 import click
+import demono
 from demono import Demono, signal_handler
 
 
 class DumbDaemon(Demono):
 
-    def run(self):
+    def run(self, **kwargs):
+        demono.echo('DumbDaemon run kwargs: {}'.format(kwargs))
         while True:
             time.sleep(1)
 
@@ -32,8 +35,9 @@ class DumbDaemon(Demono):
 @click.group()
 @click.pass_context
 def ctl_cli(ctx):
-    daemon = DumbDaemon(err='/var/log/sample_daemon_dumb.err'
-                        , out='/var/log/sample_daemon_dumb.out')
+    daemon = DumbDaemon(pid_file=os.path.join(os.getcwd(), 'dumb.pid'),
+                        err=os.path.join(os.getcwd(), 'dumb.err.log'),
+                        out=os.path.join(os.getcwd(), 'dumb.out.log'))
     ctx.obj['daemon'] = daemon
 
 
@@ -42,7 +46,7 @@ def ctl_cli(ctx):
 def start(ctx):
     daemon = ctx.obj['daemon']
     assert daemon is not None, 'daemon object should exist at that time'
-    daemon.start()
+    daemon.start(aaa='AAA', bbb='BBB')
 
 ctl_cli.add_command(start)
 
