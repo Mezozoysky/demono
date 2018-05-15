@@ -61,30 +61,30 @@ class Demono:
     _out = '/dev/null'
     _err = '/dev/null'
 
-    def __init__(self, name=None, **kwargs):
+    def __init__(self, **kwargs):
         """
         Constructs the Demono. Optional arguments are: name, in, out, err;
-        name - daemon's name, if name is None then actual classname is used as daemon name.
+        pid_file - file for storing the process id, by default -
+        '/var/log/<module_name>.<class_name>.pid'
         in - file for stdin stream, by default - '/dev/null'
         out - file for stdout stream, by default - '/dev/null'
         err - file for stderr stream, by default - '/dev/null'
         Stream files MUST be specified with absolute paths.
         """
-        self._name = name \
-            if name is not None \
-            else self.__class__.__name__
 
-        if kwargs is not None:
-            if 'pid_file' in kwargs:
-                self._pid_file = kwargs['pid_file']
-            else:
-                self._pid_file = '/var/run/{}.pid'.format(self._name)
-            if 'in' in kwargs:
-                self._in = kwargs['in']
-            if 'out' in kwargs:
-                self._out = kwargs['out']
-            if 'err' in kwargs:
-                self._err = kwargs['err']
+        if 'pid_file' in kwargs:
+            self._pid_file = kwargs['pid_file']
+        else:
+            self._pid_file = '/var/run/Demono-{}.pid' \
+                             ''.format(self.__class__.__name__)
+
+        if 'in' in kwargs:
+            self._in = kwargs['in']
+        if 'out' in kwargs:
+            self._out = kwargs['out']
+        if 'err' in kwargs:
+            self._err = kwargs['err']
+
 
     def run(self):
         assert False, \
