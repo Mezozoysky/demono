@@ -100,15 +100,22 @@ class Demono:
             '# your other code here\n' \
             '>> -----  Example end  -----\n'
 
-    def start(self, **kwargs):
+    def start(self, no_daemon=False, **kwargs):
         """
-        Daemonize process and 'run' the daemon
+        Daemonize process and 'run' the daemon;
+        no_daemon - if True process will not be daemonized
         """
         if os.path.exists(self._pid_file):
-            die('Pidfile "{}" already exists. '
-                'Considered daemon is running already'.format(self._pid_file))
+            if no_daemon:
+                warn('Pidfile "{}" exists while Demono starting in no_daemon'
+                     ' mode'.format(self._pid_file))
+            else:
+                die('Pidfile "{}" already exists. Considered daemon is running'
+                    ' already'.format(self._pid_file))
 
-        self._daemonize()
+        if not no_daemon:
+            self._daemonize()
+
         self.run(**kwargs)
 
     def stop(self):
@@ -203,7 +210,7 @@ class Demono:
 
         self._place_pid_file()
 
-        echo('Daemonized')
+        # echo('Daemonized')
         # echo('REGISTERED: {}'.format(signal_handler.registered
         #                                if hasattr(signal_handler, 'registered')
         #                                else None))
