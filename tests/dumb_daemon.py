@@ -7,11 +7,14 @@ Requires Click 6.x .
 Usage: 'python3 sample_daemon_dumb.py <start|stop>'.
 """
 
-import sys
 import os
+import sys
 import time
 import signal
 import click
+if (__name__ == '__main__'):
+    sys.path.insert(0,
+                    os.path.dirname(sys.path[0]))
 import demono
 from demono import Demono, signal_handler
 
@@ -35,7 +38,7 @@ class DumbDaemon(Demono):
 @click.group()
 @click.pass_context
 def ctl_cli(ctx):
-    daemon = DumbDaemon(pid_file=os.path.join(os.getcwd(), 'dumb.pid'),
+    daemon = DumbDaemon(#pid_file=os.path.join(os.getcwd(), 'dumb.pid'),
                         err=os.path.join(os.getcwd(), 'dumb.err.log'),
                         out=os.path.join(os.getcwd(), 'dumb.out.log'))
     ctx.obj['daemon'] = daemon
