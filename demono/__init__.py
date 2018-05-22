@@ -75,8 +75,13 @@ class Demono:
         if 'pid_file' in kwargs:
             self._pid_file = kwargs['pid_file']
         else:
-            self._pid_file = '/var/run/Demono-{}.pid' \
-                             ''.format(self.__class__.__name__)
+            Type = type(self)
+            package = '{}.'.format(Type.__module__) \
+                if Type.__module__ != '__main__' \
+                else ''
+            self._pid_file = os.path.join(
+                os.getcwd(),
+                'demono_{}{}.pid'.format(package, Type.__qualname__))
 
         if 'in' in kwargs:
             self._in = kwargs['in']
