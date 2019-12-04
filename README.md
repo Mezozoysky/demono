@@ -16,7 +16,7 @@ Installation
 
 From source:
 
-* ``git clone git://github.com/Mezozoysky/demono.git``
+* ``git clone git@gitlab.com:mezozoysky/demono.git``
 * ``cd demono``
 * ``python3 setup.py install``
 
@@ -35,6 +35,6 @@ Limitations
 Getting Help
 ============
     
-* Email me: <mezozoysky@gmail.com>
-* Post `issues to GitHub <http://github.com/Mezozoysky/demono/issues>`
+* Email me: <s.demyanovich@protonmail.com>
+* Post `issues to GitLab <http://gitlab.com/mezozoysky/demono/issues>`
 
